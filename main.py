@@ -2,7 +2,8 @@ import pygame
 
 pygame.init()
 
-tela = pygame.display.set_mode((300, 300))
+tela = pygame.display.set_mode((640, 480))
+pygame.display.set_caption('Dark Quest')
 running = True
 
 while running:
@@ -12,7 +13,7 @@ while running:
 
     clock = pygame.time.Clock()
     clock.tick(60)
-    tela.fill("blue")
+    tela.fill("black")
 
     pygame.display.update()
 
