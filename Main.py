@@ -1,4 +1,6 @@
 import pygame
+from jogador import Player
+from obstaculos import Obst
 from random import randint
 
 pygame.init()
@@ -26,22 +28,19 @@ fonte = pygame.font.SysFont('arial', 20, True, False)
 running = True
 
 # Coordenadas dos objetos na tela
-x = y = x2 = y2 = 0
-x3 = largura/2 + 160
-y3 = altura/2 - 160
+obstaculo1 = Obst("vertical")
+obstaculo2 = Obst("horizontal")
+jogador = Player(largura, altura)
 x4 = randint(40, 600)
 y4 = randint(40, 440)
 x4_1 = randint(40, 600)
 y4_1 = randint(40, 440)
 
-# Variável de pontuação
-pontuacao_yellow = int()
-pontuacao_blue = int()
 
 # Início do loop
 while running:
 
-    mensagem_moeda = f'Pontuação: {pontuacao_yellow}'
+    mensagem_moeda = f'Pontuação: {jogador.pontuacao_amarela}'
     texto_formatado = fonte.render(mensagem_moeda, True, (255, 255, 255))
 
     for event in pygame.event.get():
@@ -50,27 +49,7 @@ while running:
 
 
     # Modo de inserir funções para as teclas do teclado caso o usuário pressione a tecla ao invés de apertar uma única vez
-    if pygame.key.get_pressed()[pygame.K_a] or pygame.key.get_pressed()[pygame.K_LEFT]:
-        # Essa parte, além de configurar a ação, também adiciona velocidade conforme o usuário coleta moedas
-        x3 -= 0.5 + (0.05 * pontuacao_yellow)
-        # Isso aqui serve pra inserir colisão com as bordas da tela
-        if x3 < 0:
-            x3 = 0
-
-    if pygame.key.get_pressed()[pygame.K_d] or pygame.key.get_pressed()[pygame.K_RIGHT]:
-        x3 += 0.5 + (0.05 * pontuacao_yellow)
-        if x3 > largura - (50 - pontuacao_blue * 1):
-            x3 = largura - (50 - pontuacao_blue * 1)
-
-    if pygame.key.get_pressed()[pygame.K_w] or pygame.key.get_pressed()[pygame.K_UP]:
-        y3 -= 0.5 + (0.05 * pontuacao_yellow)
-        if y3 < 0:
-            y3 = 0
-
-    if pygame.key.get_pressed()[pygame.K_s] or pygame.key.get_pressed()[pygame.K_DOWN]:
-        y3 += 0.5 + (0.05 * pontuacao_yellow)
-        if y3 > altura - (50 - pontuacao_blue * 1):
-            y3 = altura - (50 - pontuacao_blue * 1)
+    jogador.movimentar(largura, altura)
 
     # Define o FPS do game
     clock = pygame.time.Clock()
@@ -82,9 +61,9 @@ while running:
     y = altura/2 - 20
 
     # Objetos
-    obstaculo_1 = pygame.draw.rect(tela, (255, 0 , 0), (x, y, 50, 50))
-    obstaculo_2 = pygame.draw.rect(tela, (255, 0 , 0), (x2, y2, 50, 50))
-    player = pygame.draw.rect(tela, (0, 255 , 0), (x3, y3, (50 - pontuacao_blue * 1), (50 - pontuacao_blue * 1)))
+    obstaculo_1 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo1.x, obstaculo1.y, 50, 50))
+    obstaculo_2 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo2.x, obstaculo2.y, 50, 50))
+    player = pygame.draw.rect(tela, (0, 255 , 0), (jogador.x, jogador.y, (50 - jogador.pontuacao_azul * 1), (50 - jogador.pontuacao_azul * 1)))
     moeda_amarela = pygame.draw.circle(tela, (255, 255 , 0), (x4, y4), (8))
     moeda_azul = pygame.draw.circle(tela, (0, 255, 255), (x4_1, y4_1), (6))
 
@@ -92,19 +71,19 @@ while running:
     if player.colliderect(moeda_amarela):
         x4 = randint(40, 600)
         y4 = randint(40, 440)
-        pontuacao_yellow += 1
+        jogador.pontuacao_amarela += 1
         som_moeda.play()
 
     if player.colliderect(moeda_azul):
         x4_1 = randint(40, 600)
         y4_1 = randint(40, 440)
-        pontuacao_blue += 1
+        jogador.pontuacao_azul += 1
         som_moeda.play()
 
         # Exibe uma mensagem de pontuação
-        print('=+' * 50) if pontuacao_yellow == 1 else None
+        print('=+' * 50) if jogador.pontuacao_amarela == 1 else None
         print('{:^100}'.format('Parabéns por coletar mais uma moeda, sua velocidade aumentou!'))
-        print('{:^100}'.format(f'Sua nova pontuação é: {pontuacao_yellow}'))
+        print('{:^100}'.format(f'Sua nova pontuação é: {jogador.pontuacao_amarela}'))
         print('=+' * 50)
 
     # Decide onde o texto será exibido
@@ -119,18 +98,14 @@ while running:
         print('#' * 100)
         print('{:^100}'.format('!!! GAME OVER !!!'))
         print('#' * 100)
-        print('{:^100}'.format(f'Sua pontuação final foi: {pontuacao_yellow}'))
+        print('{:^100}'.format(f'Sua pontuação final foi: {jogador.pontuacao_amarela}'))
         print('#' * 100)
 
     # Cria a movimentação dos inimigos
-    x += 1
-    if x > largura:
-        x = 0
+    obstaculo1.movimentar(largura, altura)
+    obstaculo2.movimentar(largura, altura)
 
-    y2 += 1
-    if y2 > altura:
-        y2 = 0
-
+    
 # Fim do loop
 
     # Atualiza a tela
