@@ -81,20 +81,20 @@ while running:
     y = altura/2 - 20
 
     # Objetos
-    ret_red_1 = pygame.draw.rect(tela, (255, 0 , 0), (x, y, 50, 50))
-    ret_red_2 = pygame.draw.rect(tela, (255, 0 , 0), (x2, y2, 50, 50))
-    ret_green = pygame.draw.rect(tela, (0, 255 , 0), (x3, y3, (50 - pontuacao_blue * 1), (50 - pontuacao_blue * 1)))
-    circle_yellow = pygame.draw.circle(tela, (255, 255 , 0), (x4, y4), (8))
-    circle_blue = pygame.draw.circle(tela, (0, 255, 255), (x4_1, y4_1), (6))
+    obstaculo_1 = pygame.draw.rect(tela, (255, 0 , 0), (x, y, 50, 50))
+    obstaculo_2 = pygame.draw.rect(tela, (255, 0 , 0), (x2, y2, 50, 50))
+    player = pygame.draw.rect(tela, (0, 255 , 0), (x3, y3, (50 - pontuacao_blue * 1), (50 - pontuacao_blue * 1)))
+    moeda_amarela = pygame.draw.circle(tela, (255, 255 , 0), (x4, y4), (8))
+    moeda_azul = pygame.draw.circle(tela, (0, 255, 255), (x4_1, y4_1), (6))
 
     # Configura a colisão com as moedas
-    if ret_green.colliderect(circle_yellow):
+    if player.colliderect(moeda_amarela):
         x4 = randint(40, 600)
         y4 = randint(40, 440)
         pontuacao_yellow += 1
         som_moeda.play()
 
-    if ret_green.colliderect(circle_blue):
+    if player.colliderect(moeda_azul):
         x4_1 = randint(40, 600)
         y4_1 = randint(40, 440)
         pontuacao_blue += 1
@@ -110,7 +110,7 @@ while running:
     tela.blit(texto_formatado, (480, 40))
     
     # Configura a colisão entre os inimigos
-    if ret_green.colliderect(ret_red_1) or ret_green.colliderect(ret_red_2):
+    if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
         tela.blit(texto_formatado, (520, 40))
         running = False
 
