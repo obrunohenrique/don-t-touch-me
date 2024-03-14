@@ -4,11 +4,11 @@ from random import randint
 pygame.init()
 
 # Adiciona uma música de fundo
-musica_de_fundo = pygame.mixer.music.load('Main Theme.mp3')
+musica_de_fundo = pygame.mixer.music.load('assets/audio/Main Theme.mp3')
 pygame.mixer.music.play(-1)
 
 # Adiciona som ao coletar uma moeda
-som_moeda = pygame.mixer.Sound('Coin Sound.wav')
+som_moeda = pygame.mixer.Sound('assets/audio/Coin Sound.wav')
 
 #Proporções da tela
 largura = 640
@@ -46,33 +46,6 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-
-        # Modo de inserir funções para as teclas do teclado
-            
-        '''
-        if event.type == pygame.KEYDOWN:
-          
-            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                x2 -= 32
-                if x2 < 0:
-                    x2 = 0
-
-            if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                x2 += 32
-                if x2 > largura - 50:
-                    x2 = largura - 50
-
-            if event.key == pygame.K_w or event.key == pygame.K_UP:
-                y2 -= 32
-                if y2 < 0:
-                    y2 = 0
-
-            if event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                y2 += 32
-                if y2 > altura - 50:
-                    y2 = altura - 50
-        '''
 
 
     # Modo de inserir funções para as teclas do teclado caso o usuário pressione a tecla ao invés de apertar uma única vez
