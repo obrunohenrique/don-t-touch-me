@@ -4,6 +4,7 @@ from random import randint
 pygame.init()
 
 # Adiciona uma música de fundo
+pygame.mixer.music.set_volume(0.5)
 musica_de_fundo = pygame.mixer.music.load('assets/audio/Main Theme.mp3')
 pygame.mixer.music.play(-1)
 
