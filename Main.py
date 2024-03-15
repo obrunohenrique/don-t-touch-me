@@ -40,8 +40,12 @@ y4_1 = randint(40, 440)
 # Início do loop
 while running:
 
-    mensagem_moeda = f'Pontuação: {jogador.pontuacao_amarela}'
-    texto_formatado = fonte.render(mensagem_moeda, True, (255, 255, 255))
+    mensagem_moeda_amarela = f'Pontuação: {jogador.pontuacao_amarela}'
+    texto_formatado = fonte.render(mensagem_moeda_amarela, True, (255, 255, 255))
+
+    mensagem_moeda_azul = f'Tamanho: {jogador.pontuacao_azul}'
+    texto_formatado2 = fonte.render(mensagem_moeda_azul, True, (255, 255, 255))
+
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -88,6 +92,7 @@ while running:
 
     # Decide onde o texto será exibido
     tela.blit(texto_formatado, (480, 40))
+    tela.blit(texto_formatado2, (480, 60))
     
     # Configura a colisão entre os inimigos
     if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
@@ -111,5 +116,5 @@ while running:
     # Atualiza a tela
     pygame.display.update()
 
-# Encerra o jogo
+# Encerra o jogoa
 pygame.quit()
