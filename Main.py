@@ -23,6 +23,7 @@ pygame.display.set_caption('Dark Quest')
 
 # Insere textos na tela
 fonte = pygame.font.SysFont('arial', 20, True, False)
+fonte_menor = pygame.font.SysFont('arial', 15, True, False)
 
 # Game ON
 running = True
@@ -36,9 +37,30 @@ y4 = randint(40, 440)
 x4_1 = randint(40, 600)
 y4_1 = randint(40, 440)
 
+tempo_inicial = pygame.time.get_ticks()
+
+fim_de_jogo = False
 
 # Início do loop
 while running:
+
+    while fim_de_jogo:
+        tela.fill("black")
+        mensagem_gameover = 'GAME OVER!'
+        texto_formatado_gameover = fonte.render(mensagem_gameover, True, (255, 0, 0))
+        tela.blit(texto_formatado_gameover, (largura/2-75, altura/2))
+
+        mensagem_tentar_novamente = "TENTAR NOVAMENTE? PRESSIONE 'S' PARA SIM OU 'N' PARA NÃO"
+        texto_formatado_tentar_novamente = fonte_menor.render(mensagem_tentar_novamente, True, (255, 255, 255))
+        tela.blit(texto_formatado_tentar_novamente, (largura/2-250, altura/2+30))
+
+        pygame.mixer.music.stop()
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                fim_de_jogo = False
+
 
     mensagem_moeda_amarela = f'Pontuação: {jogador.pontuacao_amarela}'
     texto_formatado = fonte.render(mensagem_moeda_amarela, True, (255, 255, 255))
@@ -94,17 +116,22 @@ while running:
     tela.blit(texto_formatado, (480, 40))
     tela.blit(texto_formatado2, (480, 60))
     
-    # Configura a colisão entre os inimigos
-    if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
-        tela.blit(texto_formatado, (520, 40))
-        running = False
+    tempo_atual = pygame.time.get_ticks()
+    tempo_decorrido = tempo_atual - tempo_inicial
 
-        # Exibe uma mensagem de game over e printa a pontuação final
-        print('#' * 100)
-        print('{:^100}'.format('!!! GAME OVER !!!'))
-        print('#' * 100)
-        print('{:^100}'.format(f'Sua pontuação final foi: {jogador.pontuacao_amarela}'))
-        print('#' * 100)
+    # Configura a colisão entre os inimigos
+    if tempo_decorrido >= 2000:
+        if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
+            tela.blit(texto_formatado, (520, 40))
+            fim_de_jogo = True
+
+
+            # Exibe uma mensagem de game over e printa a pontuação final
+            print('#' * 100)
+            print('{:^100}'.format('!!! GAME OVER !!!'))
+            print('#' * 100)
+            print('{:^100}'.format(f'Sua pontuação final foi: {jogador.pontuacao_amarela}'))
+            print('#' * 100)
 
     # Cria a movimentação dos inimigos
     obstaculo1.movimentar(largura, altura)
