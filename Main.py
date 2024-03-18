@@ -3,145 +3,167 @@ from jogador import Player
 from obstaculos import Obst
 from random import randint
 
-pygame.init()
+# Encapsula o código principal para o caso do jogo ser reiniciado
+def main():
 
-# Adiciona uma música de fundo
-pygame.mixer.music.set_volume(0.2)
-musica_de_fundo = pygame.mixer.music.load('assets/audio/Main Theme.mp3')
-pygame.mixer.music.play(-1)
+    pygame.init()
 
-# Adiciona som ao coletar uma moeda
-som_moeda = pygame.mixer.Sound('assets/audio/Coin Sound.wav')
+    # Adiciona uma música de fundo
+    pygame.mixer.music.set_volume(0.2)
+    musica_de_fundo = pygame.mixer.music.load('assets/audio/Main Theme.mp3')
+    pygame.mixer.music.play(-1)
 
-#Proporções da tela
-largura = 640
-altura = 480
-tela = pygame.display.set_mode((largura, altura))
+    # Adiciona som ao coletar uma moeda
+    som_moeda = pygame.mixer.Sound('assets/audio/Coin Sound.wav')
 
-# Insere o nome do jogo na jenela
-pygame.display.set_caption('Dark Quest')
+    #Proporções da tela
+    largura = 640
+    altura = 480
+    tela = pygame.display.set_mode((largura, altura))
 
-# Insere textos na tela
-fonte = pygame.font.SysFont('arial', 20, True, False)
-fonte_menor = pygame.font.SysFont('arial', 15, True, False)
+    # Insere o nome do jogo na jenela
+    pygame.display.set_caption('Dark Quest')
 
-# Game ON
-running = True
+    # Insere textos na tela
+    fonte = pygame.font.SysFont('arial', 20, True, False)
+    fonte_menor = pygame.font.SysFont('arial', 15, True, False)
 
-# Coordenadas dos objetos na tela
-obstaculo1 = Obst("vertical")
-obstaculo2 = Obst("horizontal")
-jogador = Player(largura, altura)
-x4 = randint(40, 600)
-y4 = randint(40, 440)
-x4_1 = randint(40, 600)
-y4_1 = randint(40, 440)
+    # Game ON
+    running = True
 
-tempo_inicial = pygame.time.get_ticks()
+    # Coordenadas dos objetos na tela
+    obstaculo1 = Obst("vertical")
+    obstaculo2 = Obst("horizontal")
+    jogador = Player(largura, altura)
+    x4 = randint(40, 600)
+    y4 = randint(40, 440)
+    x4_1 = randint(40, 600)
+    y4_1 = randint(40, 440)
 
-fim_de_jogo = False
+    tempo_inicial = pygame.time.get_ticks()
 
-# Início do loop
-while running:
+    # Cria a condição de fim de jogo
+    fim_de_jogo = False
 
-    while fim_de_jogo:
-        tela.fill("black")
-        mensagem_gameover = 'GAME OVER!'
-        texto_formatado_gameover = fonte.render(mensagem_gameover, True, (255, 0, 0))
-        tela.blit(texto_formatado_gameover, (largura/2-75, altura/2))
+    # Início do loop
+    while running:
 
-        mensagem_tentar_novamente = f"SUA PONTUAÇÃO FOI: {jogador.pontuacao_amarela}. SELECIONE R PARA REINICIAR!"
-        texto_formatado_tentar_novamente = fonte_menor.render(mensagem_tentar_novamente, True, (255, 255, 255))
-        tela.blit(texto_formatado_tentar_novamente, (largura/2-250, altura/2+30))
 
-        pygame.mixer.music.stop()
-        pygame.display.update()
+        # Caso o usuário perca o jogo
+        while fim_de_jogo:
+
+            # Exibe uma mensagem de game over
+            tela.fill("black")
+            mensagem_gameover = 'GAME OVER!'
+            texto_formatado_gameover = fonte.render(mensagem_gameover, True, (255, 0, 0))
+            tela.blit(texto_formatado_gameover, (largura/2-75, altura/2-75))
+
+            # Exibe uma mensagem da pontuação final juntamente com o questionamento de que se o usuário quer tentar novamente ou não
+            mensagem_tentar_novamente = f"PONTUAÇÃO FINAL: {jogador.pontuacao_amarela}. PRESSIONE R PARA REINICIAR OU ESC PARA SAIR!"
+            texto_formatado_tentar_novamente = fonte_menor.render(mensagem_tentar_novamente, True, (255, 255, 255))
+            tela.blit(texto_formatado_tentar_novamente, (largura/2-280, altura/2))
+            keys = pygame.key.get_pressed()
+
+            # Interrompe a música
+            pygame.mixer.music.stop()
+
+            # Encerra o loop do jogo
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+
+            # Configura as teclas
+            if keys[pygame.K_ESCAPE]:
+                pygame.quit()
+            if keys[pygame.K_r]:
+                main()
+
+            # Atualiza a tela
+            pygame.display.update()
+
+
+        # Configura as mensagens exibidas na tela
+        mensagem_moeda_amarela = f'Pontuação: {jogador.pontuacao_amarela}'
+        texto_formatado = fonte.render(mensagem_moeda_amarela, True, (255, 255, 255))
+
+        mensagem_moeda_azul = f'Tamanho: {jogador.pontuacao_azul}'
+        texto_formatado2 = fonte.render(mensagem_moeda_azul, True, (255, 255, 255))
+
+        # Encerra o loop do jogo
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-                fim_de_jogo = False
+
+        # Modo de inserir funções para as teclas do teclado caso o usuário pressione a tecla ao invés de apertar uma única vez
+        jogador.movimentar(largura, altura)
+
+        # Define o FPS do game
+        clock = pygame.time.Clock()
+        clock.tick(540)
+        tela.fill("black")
+
+        # Inimigos ON
+        x2 = largura/2 - 20
+        y = altura/2 - 20
+
+        # Objetos
+        obstaculo_1 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo1.x, obstaculo1.y, 50, 50))
+        obstaculo_2 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo2.x, obstaculo2.y, 50, 50))
+        player = pygame.draw.rect(tela, (0, 255 , 0), (jogador.x, jogador.y, (50 - jogador.pontuacao_azul * 1), (50 - jogador.pontuacao_azul * 1)))
+        moeda_amarela = pygame.draw.circle(tela, (255, 255 , 0), (x4, y4), (8))
+        moeda_azul = pygame.draw.circle(tela, (0, 255, 255), (x4_1, y4_1), (6))
+
+        # Configura a colisão com as moedas
+        if player.colliderect(moeda_amarela):
+            x4 = randint(40, 600)
+            y4 = randint(40, 440)
+            jogador.pontuacao_amarela += 1
+            som_moeda.play()
+
+        if player.colliderect(moeda_azul):
+            x4_1 = randint(40, 600)
+            y4_1 = randint(40, 440)
+            jogador.pontuacao_azul += 1
+            som_moeda.play()
+
+            # Exibe uma mensagem de pontuação
+            print('=+' * 50) if jogador.pontuacao_amarela == 1 else None
+            print('{:^100}'.format('Parabéns por coletar mais uma moeda, sua velocidade aumentou!'))
+            print('{:^100}'.format(f'Sua nova pontuação é: {jogador.pontuacao_amarela}'))
+            print('=+' * 50)
+
+        # Decide onde o texto será exibido
+        tela.blit(texto_formatado, (480, 40))
+        tela.blit(texto_formatado2, (480, 60))
+        
+        tempo_atual = pygame.time.get_ticks()
+        tempo_decorrido = tempo_atual - tempo_inicial
+
+        # Configura a colisão entre os inimigos
+        if tempo_decorrido >= 2000:
+            if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
+                tela.blit(texto_formatado, (520, 40))
+                fim_de_jogo = True
+
+                # Exibe uma mensagem de game over e printa a pontuação final
+                print('#' * 100)
+                print('{:^100}'.format('!!! GAME OVER !!!'))
+                print('#' * 100)
+                print('{:^100}'.format(f'Sua pontuação final foi: {jogador.pontuacao_amarela}'))
+                print('#' * 100)
+
+        # Cria a movimentação dos inimigos
+        obstaculo1.movimentar(largura, altura)
+        obstaculo2.movimentar(largura, altura)
 
 
-    mensagem_moeda_amarela = f'Pontuação: {jogador.pontuacao_amarela}'
-    texto_formatado = fonte.render(mensagem_moeda_amarela, True, (255, 255, 255))
+    # Fim do loop
+        
+        # Atualiza a tela
+        pygame.display.update()
 
-    mensagem_moeda_azul = f'Tamanho: {jogador.pontuacao_azul}'
-    texto_formatado2 = fonte.render(mensagem_moeda_azul, True, (255, 255, 255))
+    # Encerra o jogo
+    pygame.quit()
 
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-
-    # Modo de inserir funções para as teclas do teclado caso o usuário pressione a tecla ao invés de apertar uma única vez
-    jogador.movimentar(largura, altura)
-
-    # Define o FPS do game
-    clock = pygame.time.Clock()
-    clock.tick(540)
-    tela.fill("black")
-
-    # Inimigos ON
-    x2 = largura/2 - 20
-    y = altura/2 - 20
-
-    # Objetos
-    obstaculo_1 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo1.x, obstaculo1.y, 50, 50))
-    obstaculo_2 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo2.x, obstaculo2.y, 50, 50))
-    player = pygame.draw.rect(tela, (0, 255 , 0), (jogador.x, jogador.y, (50 - jogador.pontuacao_azul * 1), (50 - jogador.pontuacao_azul * 1)))
-    moeda_amarela = pygame.draw.circle(tela, (255, 255 , 0), (x4, y4), (8))
-    moeda_azul = pygame.draw.circle(tela, (0, 255, 255), (x4_1, y4_1), (6))
-
-    # Configura a colisão com as moedas
-    if player.colliderect(moeda_amarela):
-        x4 = randint(40, 600)
-        y4 = randint(40, 440)
-        jogador.pontuacao_amarela += 1
-        som_moeda.play()
-
-    if player.colliderect(moeda_azul):
-        x4_1 = randint(40, 600)
-        y4_1 = randint(40, 440)
-        jogador.pontuacao_azul += 1
-        som_moeda.play()
-
-        # Exibe uma mensagem de pontuação
-        print('=+' * 50) if jogador.pontuacao_amarela == 1 else None
-        print('{:^100}'.format('Parabéns por coletar mais uma moeda, sua velocidade aumentou!'))
-        print('{:^100}'.format(f'Sua nova pontuação é: {jogador.pontuacao_amarela}'))
-        print('=+' * 50)
-
-    # Decide onde o texto será exibido
-    tela.blit(texto_formatado, (480, 40))
-    tela.blit(texto_formatado2, (480, 60))
-    
-    tempo_atual = pygame.time.get_ticks()
-    tempo_decorrido = tempo_atual - tempo_inicial
-
-    # Configura a colisão entre os inimigos
-    if tempo_decorrido >= 2000:
-        if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
-            tela.blit(texto_formatado, (520, 40))
-            fim_de_jogo = True
-
-
-            # Exibe uma mensagem de game over e printa a pontuação final
-            print('#' * 100)
-            print('{:^100}'.format('!!! GAME OVER !!!'))
-            print('#' * 100)
-            print('{:^100}'.format(f'Sua pontuação final foi: {jogador.pontuacao_amarela}'))
-            print('#' * 100)
-
-    # Cria a movimentação dos inimigos
-    obstaculo1.movimentar(largura, altura)
-    obstaculo2.movimentar(largura, altura)
-
-
-# Fim do loop
-
-    # Atualiza a tela
-    pygame.display.update()
-
-# Encerra o jogoa
-pygame.quit()
+# Roda o código do jogo
+main()
