@@ -50,7 +50,7 @@ while running:
         texto_formatado_gameover = fonte.render(mensagem_gameover, True, (255, 0, 0))
         tela.blit(texto_formatado_gameover, (largura/2-75, altura/2))
 
-        mensagem_tentar_novamente = "TENTAR NOVAMENTE? PRESSIONE 'S' PARA SIM OU 'N' PARA NÃO"
+        mensagem_tentar_novamente = f"SUA PONTUAÇÃO FOI: {jogador.pontuacao_amarela}. SELECIONE R PARA REINICIAR!"
         texto_formatado_tentar_novamente = fonte_menor.render(mensagem_tentar_novamente, True, (255, 255, 255))
         tela.blit(texto_formatado_tentar_novamente, (largura/2-250, altura/2+30))
 
