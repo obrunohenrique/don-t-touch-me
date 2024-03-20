@@ -78,7 +78,7 @@ def main():
                     running = False
 
             # Configura as teclas
-            if keys[pygame.K_ESCAPE]:
+            if keys[pygame.K_ESCAPE] or event.type == pygame.QUIT:
                 pygame.quit()
             if keys[pygame.K_r]:
                 main()
