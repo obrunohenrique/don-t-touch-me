@@ -138,7 +138,7 @@ def main():
         if player.colliderect(moeda_azul):
             x_moeda_azul = randint(40, 600)
             y_moeda_azul = randint(40, 440)
-            jogador.pontuacao_azul += 1
+            jogador.pontuacao_azul -= 1
             som_moeda.play()
 
         if pontuacao_vermelha < 3:
