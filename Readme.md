@@ -11,6 +11,15 @@
 - Bruno Henrique (bhfp)
 - Thiago Felipe (tffs)
 
+## Divisão de trabalho
+
+| Grupo | Contribuição       |
+|----------------|--------------------|
+| Leonardo Cabral           | Colocar Texto    |
+| Bruno Gabriel           | Colocar Texto    |
+| Bruno Henrique           | Colocar Texto    |
+| Thiago Felipe           | Colocar Texto    |
+
 ## Conceitos utilizados que foram apresentados na diciplina
 Diversos conceitos que foram ensinados na diciplina foram usados durante a criação deste jogo. Entre eles estão:
 - Condicionais: Utilizamos o "if" em diversas partes do nosso código, como na contagem das moedas, diferenciando entre as cores azul, vermelha ou roxa, na finalização do jogo, na movimentação do jogador, na movimentação dos obstáculos e em diversas outras partes do código.
