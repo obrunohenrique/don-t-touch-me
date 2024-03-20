@@ -15,10 +15,10 @@
 
 | Grupo | Contribuição       |
 |----------------|--------------------|
-| Leonardo Cabral           | Colocar Texto    |
-| Bruno Gabriel           | Colocar Texto    |
-| Bruno Henrique           | Colocar Texto    |
-| Thiago Felipe           | Colocar Texto    |
+| Leonardo Cabral           | Responsavel pela organização geral do main.py e Readme  |
+| Bruno Henrique           | Responsavel pela criação e movimentação dos obstáculos    |
+| Bruno Gabriel           | Responsavel pelas configurações de jogabilidade do player    |
+| Thiago Felipe           | Responsavel pela coleta e contabilidade dos coletáveis    |
 
 ## Conceitos utilizados que foram apresentados na diciplina
 Diversos conceitos que foram ensinados na diciplina foram usados durante a criação deste jogo. Entre eles estão:
