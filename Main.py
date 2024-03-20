@@ -39,10 +39,9 @@ def main():
     y_moeda_amarela = randint(40, 440)
     x_moeda_azul = randint(40, 600)
     y_moeda_azul = randint(40, 440)
-    x_moeda_vermelha = randint(40, 600)
-    y_moeda_vermelha = randint(40, 440)
+    x_moeda_roxa = randint(40, 600)
+    y_moeda_roxa = randint(40, 440)
 
-    pontuacao_vermelha = 1
 
     tempo_inicial = pygame.time.get_ticks()
 
@@ -92,11 +91,9 @@ def main():
         mensagem_moeda_amarela = f'Velocidade: {jogador.pontuacao_amarela}'
         texto_formatado = fonte.render(mensagem_moeda_amarela, True, (255, 255, 255))
 
-        mensagem_moeda_azul = f'Tamanho: {jogador.pontuacao_azul}'
-        texto_formatado2 = fonte.render(mensagem_moeda_azul, True, (255, 255, 255))
+        mensagem_tamanho = f'Tamanho: {jogador.tamanho_exibido}'
+        texto_formatado2 = fonte.render(mensagem_tamanho, True, (255, 255, 255))
 
-        mensagem_moeda_vermelha = f'Vidas: {pontuacao_vermelha}'
-        texto_formatado3 = fonte.render(mensagem_moeda_vermelha, True, (255, 255, 255))
 
         # Encerra o loop do jogo
         for event in pygame.event.get():
@@ -118,7 +115,7 @@ def main():
         # Objetos
         obstaculo_1 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo1.x, obstaculo1.y, 50, 50))
         obstaculo_2 = pygame.draw.rect(tela, (255, 0 , 0), (obstaculo2.x, obstaculo2.y, 50, 50))
-        player = pygame.draw.rect(tela, (0, 255 , 0), (jogador.x, jogador.y, (50 - jogador.pontuacao_azul * 1), (50 - jogador.pontuacao_azul * 1)))
+        player = pygame.draw.rect(tela, (0, 255 , 0), (jogador.x, jogador.y, (50 - jogador.tamanho * 1), (50 - jogador.tamanho * 1)))
         moeda_amarela = pygame.draw.circle(tela, (255, 255 , 0), (x_moeda_amarela, y_moeda_amarela), (8))
         moeda_azul = pygame.draw.circle(tela, (0, 255, 255), (x_moeda_azul, y_moeda_azul), (6))
 
@@ -138,15 +135,17 @@ def main():
         if player.colliderect(moeda_azul):
             x_moeda_azul = randint(40, 600)
             y_moeda_azul = randint(40, 440)
-            jogador.pontuacao_azul -= 1
+            jogador.tamanho += 1
+            jogador.tamanho_exibido -= 1
             som_moeda.play()
 
-        if pontuacao_vermelha < 3:
-            moeda_vermelha = pygame.draw.circle(tela, (255, 0, 0), (x_moeda_vermelha, y_moeda_vermelha), (4))
-            if player.colliderect(moeda_vermelha):
-                x_moeda_vermelha = randint(40, 600)
-                y_moeda_vermelha = randint(40, 440)
-                pontuacao_vermelha += 1
+        if jogador.tamanho >= 10:
+            moeda_roxa = pygame.draw.circle(tela, (107, 63, 160), (x_moeda_roxa, y_moeda_roxa), (6))
+            if player.colliderect(moeda_roxa):
+                x_moeda_roxa = randint(40, 600)
+                y_moeda_roxa = randint(40, 440)
+                jogador.tamanho -= 1
+                jogador.tamanho_exibido += 1
                 som_moeda.play()
 
             
@@ -154,7 +153,6 @@ def main():
         # Decide onde o texto será exibido
         tela.blit(texto_formatado, (480, 40))
         tela.blit(texto_formatado2, (480, 60))
-        tela.blit(texto_formatado3, (480, 80))
         
         tempo_atual = pygame.time.get_ticks()
         tempo_decorrido = tempo_atual - tempo_inicial
@@ -162,19 +160,8 @@ def main():
         # Configura a colisão entre os inimigos
         if tempo_decorrido >= 2000:
             if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
-                tempo_atual_da_colisao = pygame.time.get_ticks()
-                if pontuacao_vermelha == 1:
-                    fim_de_jogo = True
-                else:
-                    if tempo_atual_da_colisao < tempo_atual_da_colisao + 1000:
-                        pontuacao_vermelha -= 1
-
-                # Exibe uma mensagem de game over e printa a pontuação final
-                print('#' * 100)
-                print('{:^100}'.format('!!! GAME OVER !!!'))
-                print('#' * 100)
-                print('{:^100}'.format(f'Sua pontuação final foi: {jogador.pontuacao_amarela}'))
-                print('#' * 100)
+                fim_de_jogo = True
+                
 
         # Cria a movimentação dos inimigos
         obstaculo1.movimentar(largura, altura) 

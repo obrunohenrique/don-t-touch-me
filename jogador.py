@@ -6,6 +6,9 @@ class Player:
         self.y = altura/2 + 160
         self.pontuacao_amarela = 0
         self.pontuacao_azul = 0
+        self.pontuacao_roxa = 0
+        self.tamanho = 0
+        self.tamanho_exibido = 0
 
     def movimentar(self, largura, altura):
         
