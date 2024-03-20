@@ -126,11 +126,6 @@ def main():
             y_moeda_amarela = randint(40, 440)
             jogador.pontuacao_amarela += 1
             som_moeda.play()
-            # Exibe uma mensagem de pontuação
-            print('=+' * 50) if jogador.pontuacao_amarela == 1 else None
-            print('{:^100}'.format('Parabéns por coletar mais uma moeda, sua velocidade aumentou!'))
-            print('{:^100}'.format(f'Sua nova pontuação é: {jogador.pontuacao_amarela}'))
-            print('=+' * 50)
 
         if player.colliderect(moeda_azul):
             x_moeda_azul = randint(40, 600)
