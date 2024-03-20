@@ -9,8 +9,12 @@
 - Leonardo Cabral (lfc5)
 - Bruno Gabriel (bgprs)
 - Bruno Henrique (bhfp)
-- Thiago Felipe
+- Thiago Felipe (tffs)
 
-
-
+## Conceitos utilizados que foram apresentados na diciplina
+Diversos conceitos que foram ensinados na diciplina foram usados durante a criação deste jogo. Entre eles estão:
+- Condicionais: Utilizamos o "if" em diversas partes do nosso código, como na contagem das moedas, diferenciando entre as cores azul, vermelha ou roxa, na finalização do jogo, na movimentação do jogador, na movimentação dos obstáculos e em diversas outras partes do código.
+- Laço de repetição: 
+- Função:
+- Programação orientada a objeto:
  
