@@ -22,6 +22,7 @@
 | Bruno Gabriel           | Responsavel pelas configurações de jogabilidade do player    |
 | Thiago Felipe           | Responsavel pela coleta e contabilidade dos coletáveis    |
 
+
 ## Estruturação do código:
   ###  Pasta do projeto:
   > Pasta geral do projeto, todos os arquivos e pastas utilizados estão localizadas nessa pasta.
@@ -73,4 +74,13 @@ Diversos conceitos que foram ensinados na diciplina foram usados durante a cria�
 ![Imagem2](https://github.com/obrunohenrique/don-t-touch-me/assets/162651240/90023ab3-5178-423c-8058-5d120dfcc260)
 
 ![Imagem3](https://github.com/obrunohenrique/don-t-touch-me/assets/162651240/1916c98b-1db4-467e-b88e-7844096b16f8)
+
+## Instruções de uso:
+### Requisitos para rodar o jogo:
+- [Python](https://www.python.org/downloads/)
+
+### Como rodar na minha máquina?
+- ```git clone https://github.com/obrunohenrique/don-t-touch-me.git```
+- Instalar pygame: ```pip install pygame```
+- Rodar Main.py
 
