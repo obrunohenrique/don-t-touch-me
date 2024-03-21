@@ -22,6 +22,21 @@
 | Bruno Gabriel           | Responsavel pelas configurações de jogabilidade do player    |
 | Thiago Felipe           | Responsavel pela coleta e contabilidade dos coletáveis    |
 
+## Estruturação do código:
+  ###  Pasta do projeto:
+  > Pasta geral do projeto, todos os arquivos e pastas utilizados estão localizadas nessa pasta.
+  
+  ### Assets:
+  > Pasta com os arquivos de áudio do jogo. Nela está presente o som ao pegar as moedas e a música de fundo do jogo.
+
+  ### Main.py:
+  > Este é o arquivo principal onde o jogo será executado. Nele, ocorre o loop do jogo, durante o qual os eventos possíveis ocorrerão enquanto o jogador estiver jogando.
+
+  ### jogador.py:
+
+  ### obstaculos.py:
+
+  ### Readme.md
 
 ## Conceitos utilizados que foram apresentados na diciplina:
 
