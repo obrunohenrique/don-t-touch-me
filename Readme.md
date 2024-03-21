@@ -30,13 +30,16 @@
   > Pasta com os arquivos de áudio do jogo. Nela está presente o som ao pegar as moedas e a música de fundo do jogo.
 
   ### Main.py:
-  > Este é o arquivo principal onde o jogo será executado. Nele, ocorre o loop do jogo, durante o qual os eventos possíveis ocorrerão enquanto o jogador estiver jogando.
+  > Este é o arquivo principal onde o jogo será executado. Nele, ocorre o loop do jogo, durante o qual os eventos possíveis ocorrerão enquanto o jogador estiver jogando. Alem disso, importamos as blibiotecas "Pygame" e "random" para ajudar com algumas funções, e as classes "Player" e "Obst" dos nossos outros arquivos.
 
   ### jogador.py:
+  > Nesse arquivo, temos a Classe do player, onde definimos onde ele irá surgir na tela e toda a sua movimentação dentro do jogo.
 
   ### obstaculos.py:
+  > 
 
-  ### Readme.md
+  ### Readme.md:
+  > Arquivo onde foi feito o relatório do projeto Don't Touch Me
 
 ## Conceitos utilizados que foram apresentados na diciplina:
 
