@@ -22,7 +22,7 @@ def main():
     tela = pygame.display.set_mode((largura, altura))
 
     # Insere o nome do jogo na jenela
-    pygame.display.set_caption('Dark Quest')
+    pygame.display.set_caption("Don't touch me")
 
     # Insere textos na tela
     fonte = pygame.font.SysFont('arial', 20, True, False)
@@ -134,7 +134,7 @@ def main():
             jogador.tamanho_exibido -= 1
             som_moeda.play()
 
-        if jogador.tamanho >= 10:
+        if jogador.tamanho >= 5:
             moeda_roxa = pygame.draw.circle(tela, (107, 63, 160), (x_moeda_roxa, y_moeda_roxa), (6))
             if player.colliderect(moeda_roxa):
                 x_moeda_roxa = randint(40, 600)
@@ -144,7 +144,6 @@ def main():
                 som_moeda.play()
 
             
-
         # Decide onde o texto será exibido
         tela.blit(texto_formatado, (480, 40))
         tela.blit(texto_formatado2, (480, 60))
@@ -157,11 +156,9 @@ def main():
             if player.colliderect(obstaculo_1) or player.colliderect(obstaculo_2):
                 fim_de_jogo = True
                 
-
         # Cria a movimentação dos inimigos
         obstaculo1.movimentar(largura, altura) 
         obstaculo2.movimentar(largura, altura)
-
 
     # Fim do loop
         
