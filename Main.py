@@ -5,7 +5,7 @@ from random import randint
 
 # Encapsula o código principal para o caso do jogo ser reiniciado
 def main():
-
+    
     pygame.init()
 
     # Adiciona uma música de fundo
