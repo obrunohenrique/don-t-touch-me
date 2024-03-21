@@ -29,7 +29,7 @@ Diversos conceitos que foram ensinados na diciplina foram usados durante a cria�
 - Condicionais: Utilizamos o "if" em diversas partes do nosso código, como na contagem das moedas, diferenciando entre as cores azul, vermelha ou roxa, na finalização do jogo, na movimentação do jogador, na movimentação dos obstáculos e em diversas outras partes do código.
 - Laço de repetição: O jogo é rodado em um laço de repetição em que o "while" é utilizado para fazer o loop.
 - Função: As funções são utilizadas em diversas partes como na criação dos obstáculos e sua movimentação, na criação do player e sua movimentação, nos coletáveis e é tambem utilizado no main.
-- Programação orientada a objeto: Utilizamos classes em grande parte do nosso projeto. A criação de objetos foi fundamental para uma melhor organização e definição dos atributos. Adotamos a Programação Orientada a Objetos (POO) para modelar os obstáculos, o jogador (Player) e os itens colecionáveis (coletáveis).
+- Programação orientada a objeto: Utilizamos classes em grande parte do nosso projeto. A criação de objetos foi fundamental para uma melhor organização e definição dos atributos. Adotamos a Programação Orientada a Objetos (POO) para modelar os obstáculos, o jogador (Player) e os itens coletáveis.
 
 
 ## Bibliotecas utilizada:
