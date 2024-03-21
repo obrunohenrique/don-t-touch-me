@@ -33,13 +33,13 @@
   > Este é o arquivo principal onde o jogo será executado. Nele, ocorre o loop do jogo, durante o qual os eventos possíveis ocorrerão enquanto o jogador estiver jogando. Alem disso, importamos as blibiotecas "Pygame" e "random" para ajudar com algumas funções, e as classes "Player" e "Obst" dos nossos outros arquivos.
 
   ### jogador.py:
-  > Nesse arquivo, temos a Classe do player, onde definimos onde ele irá surgir na tela e toda a sua movimentação dentro do jogo.
+  > Nesse arquivo, temos a Classe do player, onde definimos onde ele irá surgir na tela e toda a sua movimentação dentro do jogo. A biblioteca pygame foi utilizada nesse arquivo para conseguirmos realizar a movimentação do personagem da forma que desejamos.
 
   ### obstaculos.py:
-  > 
+  > Nesse arquivo, criamos a Classe Obst, que é responsável pela criação dos obstáculos e do seu padrão de movimentação. Para fazer isso utilizamos a blibioteca "random" e a função "randint" para gerar as posições inicias dos obstáculos aleatoriamente. 
 
   ### Readme.md:
-  > Arquivo onde foi feito o relatório do projeto Don't Touch Me
+  > Arquivo onde foi feito o relatório do projeto Don't Touch Me.
 
 ## Conceitos utilizados que foram apresentados na diciplina:
 
