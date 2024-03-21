@@ -13,7 +13,7 @@
 - Bruno Henrique (bhfp)
 - Thiago Felipe (tffs)
 
-## Divisão de trabalho
+## Divisão de trabalho:
 
 | Grupo | Contribuição       |
 |----------------|--------------------|
@@ -23,7 +23,7 @@
 | Thiago Felipe           | Responsavel pela coleta e contabilidade dos coletáveis    |
 
 
-## Conceitos utilizados que foram apresentados na diciplina
+## Conceitos utilizados que foram apresentados na diciplina:
 
 Diversos conceitos que foram ensinados na diciplina foram usados durante a criação deste jogo. Entre eles estão:
 - Condicionais: Utilizamos o "if" em diversas partes do nosso código, como na contagem das moedas, diferenciando entre as cores azul, vermelha ou roxa, na finalização do jogo, na movimentação do jogador, na movimentação dos obstáculos e em diversas outras partes do código.
@@ -32,7 +32,7 @@ Diversos conceitos que foram ensinados na diciplina foram usados durante a cria�
 - Programação orientada a objeto:
 
 
-## Bibliotecas utilizada
+## Bibliotecas utilizada:
 - Pygame: A biblioteca "Pygame" foi a mais utilizada em nosso projeto, sendo responsável por facilitar a realização do jogo e ter varias funções uteis ao nosso alcance. Ela ajudou na utilização de sons, na inserção de textos na tela do jogo, na definição do clock do jogo, na criação dos objetos e na colisão entre eles.
 - Random: A biblioteca "Random" foi utilizada para usarmos a função "Randint" em diversar partes do nosso projeto. Essa função foi importante para gerar aleatoriamente os coletaveis na tela e na criação dos obstaculos.
 
@@ -47,3 +47,12 @@ Diversos conceitos que foram ensinados na diciplina foram usados durante a cria�
  
 - Quais as lições aprendidas durante o projeto?
   > As lições aprendidas durante o projeto foram que a organização é fundamental para o andamento, ter um código fácil de ser lido e uma comunicação entre os membros da equipe é importantíssimo para o progresso do projeto como um todo. De nada adianta ter ideias ambiciosas sem um gerenciamento decente do tempo e das tarefas a serem realizadas.
+
+## Imagens do jogo:
+
+![Imagem1](https://github.com/obrunohenrique/don-t-touch-me/assets/162651240/7d1a1628-220a-4e42-8354-2fcc6bf091c4)
+
+![Imagem2](https://github.com/obrunohenrique/don-t-touch-me/assets/162651240/90023ab3-5178-423c-8058-5d120dfcc260)
+
+![Imagem3](https://github.com/obrunohenrique/don-t-touch-me/assets/162651240/1916c98b-1db4-467e-b88e-7844096b16f8)
+
