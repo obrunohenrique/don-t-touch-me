@@ -11,9 +11,9 @@ class Player:
     def movimentar(self, largura, altura):
         
         if pygame.key.get_pressed()[pygame.K_a] or pygame.key.get_pressed()[pygame.K_LEFT]:
-            # Essa parte, além de configurar a ação, também adiciona velocidade conforme o usuário coleta moedas
+            # Essa parte, além de configurar a ação, também adiciona velocidade conforme o usuário coleta moedas.
             self.x -= 0.5 + (0.05 * self.pontuacao_amarela)
-            # Isso aqui serve pra inserir colisão com as bordas da tela
+            # Isso aqui serve pra inserir colisão com as bordas da tela.
             if self.x < 0:
                 self.x = 0
 
